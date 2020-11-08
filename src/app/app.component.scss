@@ -1,110 +1,17 @@
-
-$mainColor: #577e81;
-$bodyColor: #e9f2eb;
-$accentColor: #fef5f0;
-
 .container {
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
-.coffeeCard {
-    height: 384px;
-    width: 400px;
-    display: flex;
-    flex-flow: column;
-    padding: 0;
-
-    img {
-        width: 144px;
-        height: 144px;
-
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        margin-top: 24px;
-        margin-right: 40px;
-    }
-
-    .mat-card-header {
+    .inner-container {
         display: flex;
-        width: 100%;
-        min-height: 80px;
-        align-items: flex-end;
-        border-radius: 4px 4px 0px 0px;
+        flex-wrap: wrap;
+        max-width: 900px;
 
-        background: rgb(87, 126, 129);
-        background: -moz-linear-gradient(
-            90deg,
-            rgba(87, 126, 129, 1) 0%,
-            rgba(87, 126, 129, 1) 35%,
-            rgba(88, 143, 149, 1) 100%
-        );
-        background: -webkit-linear-gradient(
-            90deg,
-            rgba(87, 126, 129, 1) 0%,
-            rgba(87, 126, 129, 1) 35%,
-            rgba(88, 143, 149, 1) 100%
-        );
-        background: linear-gradient(
-            90deg,
-            rgba(87, 126, 129, 1) 0%,
-            rgba(87, 126, 129, 1) 35%,
-            rgba(88, 143, 149, 1) 100%
-        );
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#577e81",endColorstr="#588f95",GradientType=1);
-    }
-    .mat-card-content {
-        display: flex;
-        height: 100%;
-        margin-bottom: 0px;
-        align-items: center;
-        background-color: $bodyColor;
-        color: black;
-
-        .contentContainer {
-            display: flex;
-            flex-flow: row;
-            width: 100%;
-            justify-content: space-around;
-            align-self: flex-end;
-            margin-bottom: 24px;
-            .contentItem {
-                display: flex;
-                align-items: center;
-                flex-flow: column;
-
-                .mat-icon {
-                    width: 40px;
-                    height: 40px;
-                }
-            }
-        }
-    }
-    .mat-card-actions {
-        display: flex;
-        flex-flow: row;
-        height: 56px;
-        margin: 0;
-        padding: 0;
-        button {
-            padding: 0;
-            margin: 0;
-            height: 100%;
-            width: 50%;
-        }
-
-        button:first-child {
-            background-color: $mainColor;
-            border-radius: 0px 0px 0px 4px;
-        }
-        button:last-child {
-            background-color: $accentColor;
-            color: $mainColor;
-            border-radius: 0px 0px 4px 0px;
+        app-coffee-card {
+            padding: 24px;
         }
     }
 }

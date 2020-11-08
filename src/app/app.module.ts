@@ -10,13 +10,25 @@ import { MatCardModule } from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from "@angular/material/icon";
 import { HttpClientModule } from "@angular/common/http";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+
 
 //npm components
 import { BarRatingModule } from "ngx-bar-rating";
 
+
+// coffee logger components
+import { CoffeeCardComponent } from './coffee-card/coffee-card.component';
+import { LogCoffeeComponent } from './coffee-card/log-coffee/log-coffee.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CoffeeCardComponent,
+    LogCoffeeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +40,11 @@ import { BarRatingModule } from "ngx-bar-rating";
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
     
     // npm components
     BarRatingModule

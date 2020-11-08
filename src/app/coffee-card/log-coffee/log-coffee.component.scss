@@ -1,0 +1,114 @@
+$mainColor: #577e81;
+$bodyColor: #e9f2eb;
+$accentColor: #fef5f0;
+
+.coffee-log-card {
+    @media only screen and (min-width: 400px) {
+        width: 400px;
+    }
+    display: flex;
+    flex-flow: column;
+    padding: 0;
+
+    img {
+        width: 144px;
+        height: 144px;
+
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        margin-top: 24px;
+        margin-right: 40px;
+    }
+
+    .mat-card-header {
+        display: flex;
+        width: 100%;
+        min-height: 80px;
+        align-items: center;
+        border-radius: 4px 4px 0px 0px;
+
+        background: rgb(87, 126, 129);
+        background: -moz-linear-gradient(
+            90deg,
+            rgba(87, 126, 129, 1) 0%,
+            rgba(87, 126, 129, 1) 35%,
+            rgba(88, 143, 149, 1) 100%
+        );
+        background: -webkit-linear-gradient(
+            90deg,
+            rgba(87, 126, 129, 1) 0%,
+            rgba(87, 126, 129, 1) 35%,
+            rgba(88, 143, 149, 1) 100%
+        );
+        background: linear-gradient(
+            90deg,
+            rgba(87, 126, 129, 1) 0%,
+            rgba(87, 126, 129, 1) 35%,
+            rgba(88, 143, 149, 1) 100%
+        );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#577e81",endColorstr="#588f95",GradientType=1);
+
+        .mat-card-title {
+            margin-bottom: 0;
+            color: white;
+        }
+    }
+    .mat-card-content {
+        display: flex;
+        height: 100%;
+        margin-bottom: 0px;
+        flex-flow: column;
+        background-color: $bodyColor;
+        color: black;
+
+        .rating-container {
+            display: flex;
+            flex-flow: column;
+            margin-top: 32px;
+            margin-left: 32px;
+
+            bar-rating {
+                display: flex;
+                // .br-fontawesome .br-units .br-unit {
+                //     font: normal normal normal 40px/1 FontAwesome !important;
+                // }
+            }
+        }
+
+        .coffee-log-form {
+            display: flex;
+            flex-flow: column;
+            padding: 32px;
+
+            mat-form-field.mat-form-field {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .mat-card-actions {
+        display: flex;
+        flex-flow: row;
+        height: 56px;
+        margin: 0;
+        padding: 0;
+        button {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 50%;
+        }
+
+        button:first-child {
+            background-color: $mainColor;
+            border-radius: 0px 0px 0px 4px;
+            color: #fef5f0;
+        }
+        button:last-child {
+            background-color: $accentColor;
+            color: $mainColor;
+            border-radius: 0px 0px 4px 0px;
+        }
+    }
+}

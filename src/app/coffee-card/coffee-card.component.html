@@ -1,0 +1,29 @@
+<mat-card class="coffee-card mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>{{brand}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <img mat-card-image [src]="cardImage" alt="Brand logo">
+      <div class="rating-container">
+        <bar-rating [(rate)]="rate" [max]="5" [theme]="'fontawesome'"></bar-rating>
+      </div>
+      <div class="content-container">
+        <div class="content-item">
+          <mat-icon svgIcon="espresso"></mat-icon>
+          <h2>{{cups}}</h2>
+        </div>
+        <div class="content-item">
+          <mat-icon svgIcon="country"></mat-icon>
+          <h2>{{country}}</h2>
+        </div>
+        <div class="content-item">
+          <mat-icon svgIcon="beans"></mat-icon>
+          <h2>{{bean}}</h2>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LOG COFFEE <mat-icon svgIcon="portafilter"></mat-icon></button>
+      <button mat-button>DETAILS <mat-icon svgIcon="information"></mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
