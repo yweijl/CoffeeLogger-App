@@ -1,7 +1,3 @@
 <div class="container">
-    <app-coffee-card></app-coffee-card>
-    <app-coffee-card></app-coffee-card>
-    <app-coffee-card></app-coffee-card>
-    <app-coffee-card></app-coffee-card>
-    <!-- <app-log-coffee></app-log-coffee> -->
+    <app-coffee-card *ngFor="let coffee of coffeeList" [coffee]="coffee"></app-coffee-card>
 </div>

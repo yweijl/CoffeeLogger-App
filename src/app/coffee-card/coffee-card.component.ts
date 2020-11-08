@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CoffeeDialog } from 'src/models/coffee/coffee-dialog.model';
+import { Coffee } from 'src/models/coffee/coffee.model';
 import { LogCoffeeComponent } from './log-coffee/log-coffee.component';
 
 @Component({
@@ -9,20 +11,13 @@ import { LogCoffeeComponent } from './log-coffee/log-coffee.component';
 })
 export class CoffeeCardComponent implements OnInit {
 
-  title = 'CoffeeLogger';
-  brand = 'IEF & IDO'
-  cardImage = '../assets/Logos/IefIdo_CMYK_V2-Hersteld_Rondo-Mexico.png'
-  rate = 4;
-  bean = 'Arabica';
-  country = 'Guatemala'
-  cups = 214;
-  
-  constructor(public dialog: MatDialog){ }
+  @Input() coffee: Coffee;
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   openDialog() {
-    this.dialog.open(LogCoffeeComponent, { panelClass: 'log-coffee-dialog', disableClose: true });
+    this.dialog.open(LogCoffeeComponent, { panelClass: 'log-coffee-dialog', disableClose: true, data: new CoffeeDialog(this.coffee.id, this.coffee.brand, this.coffee.imagePath) } );
   }
 }

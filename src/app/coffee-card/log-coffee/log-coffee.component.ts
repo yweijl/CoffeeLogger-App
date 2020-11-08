@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import { Component, OnInit, Inject, Input } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CoffeeDialog } from 'src/models/coffee/coffee-dialog.model';
+import { LogCoffee } from 'src/models/coffee/log-coffee.model';
 
 @Component({
   selector: 'app-log-coffee',
@@ -8,21 +11,37 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class LogCoffeeComponent implements OnInit {
 
-  brand: string = 'IEF & IDO'
-  rate: number = 5;
-  cardImage: string = '../assets/Logos/IefIdo_CMYK_V2-Hersteld_Rondo-Mexico.png'
-  color: string = 'blue';
-  flavorList: string[] = ['fruit', 'sour', 'bitter', 'sweet', 'full', 'chocolate', 'nuts', 'watery', 'light', 'full', 'strong', 'heavy '];
+  logCoffee: LogCoffee;
+  brand: string;
+  imagePath: string;
   flavors = new FormControl();
+  flavorList: string[] = [
+    'Nuts',
+    'Wattery',
+    'Full',
+    'Fruity',
+    'Chocolate',
+    'Sour',
+    'Bitter',
+    'Sweet'
+  ];
 
   coffeeLogFormControl = new FormControl('', [
     Validators.required,
   ]);
 
-  constructor() { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) data: CoffeeDialog,
+    private dialogRef: MatDialogRef<LogCoffeeComponent>) {
+    this.logCoffee = new LogCoffee(data.coffeeId, 0, 0, 0, 0, []);
+    this.brand = data.brand;
+    this.imagePath = data.imagePath;
+  }
 
-  
   ngOnInit(): void {
   }
 
+  public save() {
+    this.dialogRef.close();
+  }
 }
