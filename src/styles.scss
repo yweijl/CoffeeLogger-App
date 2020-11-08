@@ -4,3 +4,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @import '~ngx-bar-rating/themes/br-fontawesome-theme';
+
+.log-coffee-dialog .mat-dialog-container {
+    padding: 0;
+}

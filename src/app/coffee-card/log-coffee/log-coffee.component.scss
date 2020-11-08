@@ -3,7 +3,7 @@ $bodyColor: #e9f2eb;
 $accentColor: #fef5f0;
 
 .coffee-log-card {
-    @media only screen and (min-width: 400px) {
+    @media only screen and (min-width: 500px) {
         width: 400px;
     }
     display: flex;
@@ -23,7 +23,6 @@ $accentColor: #fef5f0;
 
     .mat-card-header {
         display: flex;
-        width: 100%;
         min-height: 80px;
         align-items: center;
         border-radius: 4px 4px 0px 0px;

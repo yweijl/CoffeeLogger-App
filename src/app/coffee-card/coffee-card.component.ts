@@ -23,7 +23,6 @@ export class CoffeeCardComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(LogCoffeeComponent);
+    this.dialog.open(LogCoffeeComponent, { panelClass: 'log-coffee-dialog', disableClose: true });
   }
-
 }

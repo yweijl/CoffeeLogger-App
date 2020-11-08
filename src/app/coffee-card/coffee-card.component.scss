@@ -3,10 +3,9 @@ $bodyColor: #e9f2eb;
 $accentColor: #fef5f0;
 
 .coffee-card {
-    height: 384px;
-    
     @media only screen and (min-width: 400px) {
         width: 400px;
+        height: 384px;
     }
 
     display: flex;
@@ -14,19 +13,24 @@ $accentColor: #fef5f0;
     padding: 0;
 
     img {
-        width: 144px;
-        height: 144px;
+        @media only screen and (min-width: 400px) {
+            width: 144px;
+            height: 144px;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            margin-top: 24px;
+            margin-right: 40px;
+        }
 
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        margin-top: 24px;
-        margin-right: 40px;
+        @media only screen and (max-width: 399px) {
+            width: 100px;
+            height: 100px;
+        }
     }
 
     .mat-card-header {
         display: flex;
-        width: 100%;
         min-height: 80px;
         align-items: center;
         border-radius: 4px 4px 0px 0px;
@@ -84,7 +88,14 @@ $accentColor: #fef5f0;
 
         .content-container {
             display: flex;
-            flex-flow: row;
+
+            @media only screen and (min-width: 400px) {
+                flex-flow: row;
+            }
+            @media only screen and (max-width: 399px) {
+                flex-flow: column;
+            }
+
             width: 100%;
             justify-content: space-around;
             align-self: flex-end;
@@ -103,26 +114,53 @@ $accentColor: #fef5f0;
     }
     .mat-card-actions {
         display: flex;
-        flex-flow: row;
+
         height: 56px;
         margin: 0;
         padding: 0;
         button {
-            padding: 0;
-            margin: 0;
             height: 100%;
-            width: 50%;
         }
 
         button:first-child {
             background-color: $mainColor;
-            border-radius: 0px 0px 0px 4px;
             color: #fef5f0;
         }
         button:last-child {
             background-color: $accentColor;
             color: $mainColor;
-            border-radius: 0px 0px 4px 0px;
+        }
+
+        @media only screen and (min-width: 400px) {
+            flex-flow: row;
+            button {
+                width: 50%;
+                padding: 0;
+                margin: 0;
+            }
+
+            button:first-child {
+                border-radius: 0px 0px 0px 4px;
+            }
+
+            button:last-child {
+                background-color: $accentColor;
+                color: $mainColor;
+                border-radius: 0px 0px 4px 0px;
+            }
+        }
+
+        @media only screen and (max-width: 399px) {
+            flex-flow: column;
+            button {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            button:first-child {
+                border-radius: 0px 0px 0px 0px;
+            }
         }
     }
 }

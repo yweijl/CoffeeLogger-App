@@ -2,8 +2,30 @@
         display: flex;
         flex-wrap: wrap;
         max-width: 900px;
+        justify-content: center;
 
-        app-coffee-card {
-            padding: 24px;
+        @media only screen and (max-width: 832px) {
+            flex-direction: column;
+            align-items: center;
+            margin-top: 24px;
+            margin-left: 24px;
+            margin-right: 24px;
+            width: 100vw;
+
+            app-coffee-card {
+                margin-bottom: 24px;
+
+            }
         }
+
+        @media only screen and (min-width: 800px) {
+            app-coffee-card {
+                padding: 24px;
+            }
+        }
+
+        @media only screen and (max-width: 832px) {
+        }
+
+        
 }
