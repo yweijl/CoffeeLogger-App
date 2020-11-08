@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatIconRegistry } from "@angular/material/icon";
-import { DomSanitizer } from "@angular/platform-browser";
+import {MatDialog} from '@angular/material/dialog';
+import { LogCoffeeComponent } from './log-coffee/log-coffee.component';
 
 @Component({
   selector: 'app-coffee-card',
@@ -17,23 +17,13 @@ export class CoffeeCardComponent implements OnInit {
   country = 'Guatemala'
   cups = 214;
   
-  constructor(private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer){
-      this.registerIcon('Icons','portafilter');
-      this.registerIcon('Icons','information');
-      this.registerIcon('Icons','beans');
-      this.registerIcon('Icons','espresso');
-      this.registerIcon('Icons','country');
-    }
-
-  private registerIcon(path: string, icon: string){
-    this.matIconRegistry.addSvgIcon(
-      icon,
-      this.domSanitizer.bypassSecurityTrustResourceUrl(`../assets/${path}/${icon}.svg`)
-    );
-  }
+  constructor(public dialog: MatDialog){ }
 
   ngOnInit(): void {
+  }
+
+  openDialog() {
+    this.dialog.open(LogCoffeeComponent);
   }
 
 }
