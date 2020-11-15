@@ -1,6 +1,4 @@
-$mainColor: #577e81;
-$bodyColor: #e9f2eb;
-$accentColor: #fef5f0;
+@import  '../../../styles.scss';
 
 .coffee-log-card {
     @media only screen and (min-width: 500px) {
@@ -109,5 +107,11 @@ $accentColor: #fef5f0;
             color: $mainColor;
             border-radius: 0px 0px 4px 0px;
         }
-    }
+    } 
 }
+
+// Flavor checkbox collor
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked {
+    background: $mainColor;
+}
+  

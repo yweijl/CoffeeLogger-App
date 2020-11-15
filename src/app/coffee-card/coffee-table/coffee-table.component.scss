@@ -1,0 +1,35 @@
+@import "../../../styles.scss";
+
+table {
+  @media only screen and (min-width: 850px) {
+    width: 800px;
+  }
+}
+
+
+tr.mat-footer-row {
+  td {
+    color: white;
+    font-size: medium;
+  }
+}
+
+tr.mat-header-row {
+  th {
+    font-size: medium;
+    color: white;
+  }
+  background-color: $mainColor;
+}
+
+.mat-row:nth-child(even) {
+  background-color: $bodyColor;
+}
+
+.mat-row:nth-child(odd) {
+  background-color: $accentColor;
+}
+
+.mat-footer-row {
+  background-color: $mainColor;
+}

@@ -1,6 +1,4 @@
-$mainColor: #577e81;
-$bodyColor: #e9f2eb;
-$accentColor: #fef5f0;
+@import '../../styles.scss';
 
 .coffee-card {
     @media only screen and (min-width: 400px) {

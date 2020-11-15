@@ -27,7 +27,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Flavors</mat-label>
           <mat-select [formControl]="flavors" multiple>
-            <mat-option *ngFor="let flavor of flavorList" [value]="flavor">{{flavor}}</mat-option>
+            <mat-option style="background-color: #fef5f0;" *ngFor="let flavor of flavorList" [value]="flavor">{{flavor}}</mat-option>
           </mat-select>
         </mat-form-field>
       </form>

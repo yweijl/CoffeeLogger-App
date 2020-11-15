@@ -1,0 +1,56 @@
+<table mat-table [dataSource]="coffeeRecords" class="mat-elevation-z8">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="Id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let coffeeRecord"> {{coffeeRecord.id}} </td>
+        <td mat-footer-cell *matFooterCellDef> Average: </td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let coffeeRecord"> {{coffeeRecord.date | date}} </td>
+        <td mat-footer-cell *matFooterCellDef>   </td>
+    </ng-container>
+
+    <!-- Grind Column -->
+    <ng-container matColumnDef="Grind">
+        <th mat-header-cell *matHeaderCellDef> Grind </th>
+        <td mat-cell *matCellDef="let coffeeRecord"> {{coffeeRecord.grind }} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+
+    <!-- Time Column -->
+    <ng-container matColumnDef="Time">
+        <th mat-header-cell *matHeaderCellDef> Time </th>
+        <td mat-cell *matCellDef="let coffeeRecord"> {{coffeeRecord.time | number}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{getAverage('time') }} </td>
+    </ng-container>
+
+    <!-- DoseIn Column -->
+    <ng-container matColumnDef="Dose In">
+        <th mat-header-cell *matHeaderCellDef> Dose In </th>
+        <td mat-cell *matCellDef="let coffeeRecord"> {{coffeeRecord.doseIn | number}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{getAverage('doseIn') }} </td>
+    </ng-container>
+
+    <!-- DoseOut Column -->
+    <ng-container matColumnDef="Dose Out">
+        <th mat-header-cell *matHeaderCellDef> Dose Out </th>
+        <td mat-cell *matCellDef="let coffeeRecord"> {{coffeeRecord.doseOut | number}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{getAverage('doseOut')}} </td>
+    </ng-container>
+
+    <!-- Rating Column -->
+    <ng-container matColumnDef="Rating">
+        <th mat-header-cell *matHeaderCellDef> Rating </th>
+        <td mat-cell *matCellDef="let coffeeRecord"> {{coffeeRecord.rating | number}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{getAverage('rating') | number}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+</table>

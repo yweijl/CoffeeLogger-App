@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
 
 
 //npm components
@@ -25,13 +26,15 @@ import { BarRatingModule } from "ngx-bar-rating";
 import { CoffeeCardComponent } from './coffee-card/coffee-card.component';
 import { LogCoffeeComponent } from './coffee-card/log-coffee/log-coffee.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CoffeeTableComponent } from './coffee-card/coffee-table/coffee-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoffeeCardComponent,
     LogCoffeeComponent,
-    DashboardComponent
+    DashboardComponent,
+    CoffeeTableComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ReactiveFormsModule,
     MatSelectModule,
     MatDialogModule,
+    MatTableModule,
     
     // npm components
     BarRatingModule
