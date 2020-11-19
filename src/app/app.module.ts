@@ -23,10 +23,10 @@ import { BarRatingModule } from "ngx-bar-rating";
 
 
 // coffee logger components
-import { CoffeeCardComponent } from './coffee-card/coffee-card.component';
-import { LogCoffeeComponent } from './coffee-card/log-coffee/log-coffee.component';
+import { CoffeeCardComponent } from './coffee.components/coffee-card/coffee-card.component';
+import { LogCoffeeComponent } from './coffee.components/log-coffee/log-coffee.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CoffeeTableComponent } from './coffee-card/coffee-table/coffee-table.component';
+import { CoffeeTableComponent } from './coffee.components/coffee-table/coffee-table.component';
 
 @NgModule({
   declarations: [

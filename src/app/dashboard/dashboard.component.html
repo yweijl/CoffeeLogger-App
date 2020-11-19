@@ -1,3 +1,6 @@
 <div class="container">
     <app-coffee-card *ngFor="let coffee of coffeeList" [coffee]="coffee"></app-coffee-card>
 </div>
+<button mat-fab aria-label="Add new Coffee" (click)="onAddCoffee()">
+    <mat-icon>add</mat-icon>
+</button>

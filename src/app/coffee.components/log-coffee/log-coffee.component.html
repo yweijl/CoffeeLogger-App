@@ -1,0 +1,43 @@
+<form [formGroup]="logCoffeeForm" (ngSubmit)="onSubmit()">
+  <mat-card class="coffee-log-card mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>{{selectedCoffee.brand}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <img mat-card-image [src]="selectedCoffee.imagePath" alt="Brand logo">
+      <div class="rating-container">
+        <mat-hint>Rate coffee</mat-hint>
+        <bar-rating formControlName="rating" [max]="5" [theme]="'fontawesome'"></bar-rating>
+      </div>
+      <div class="input-fields">
+        <mat-form-field appearance="fill">
+          <mat-label>Dose in</mat-label>
+          <input formControlName="doseIn" type="number" matInput placeholder="0,0 g">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Dose out</mat-label>
+          <input formControlName="doseOut" type="number" matInput placeholder="0,0 g">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Time</mat-label>
+          <input formControlName="time" type="number" matInput placeholder="0 Sec">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Flavors</mat-label>
+          <mat-select multiple formControlName="flavors">
+            <mat-option style="background-color: #fef5f0;" *ngFor="let flavor of flavorList" [value]="flavor">{{flavor}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-error *ngIf="invalidForm">Please fill in all fields</mat-error>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button type="submit">SAVE <mat-icon>save_alt</mat-icon></button>
+      <button mat-button mat-dialog-close>CANCEL <mat-icon>cancel</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+</form>
