@@ -2,29 +2,35 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { coffeeDataSerivce } from 'src/app/services/coffee.data.service';
-import { CoffeeRecord } from 'src/app/interfaces/coffee-record.interface';
+import { INewRecordDto, NewRecordDto, RecordClient } from 'src/app/http.clients/api.client';
 
 @Component({
   selector: 'app-log-coffee',
   templateUrl: './log-coffee.component.html',
-  styleUrls: ['./log-coffee.component.scss']
+  styleUrls: ['./log-coffee.component.scss'],
+  providers: [RecordClient]
 })
 export class LogCoffeeComponent implements OnInit {
   logCoffeeForm: FormGroup;
   selectedCoffee: selectedCoffee
   brand: string;
   imagePath: string;
-  flavors = new FormControl();
   flavorList: string[]
   invalidForm: boolean = false;
 
   constructor(
+    private recordClient:RecordClient,
     @Inject(MAT_DIALOG_DATA) private data: { id: number },
     private dialogRef: MatDialogRef<LogCoffeeComponent>,
     private coffeeDataService: coffeeDataSerivce) {
   }
 
   ngOnInit(): void {
+    this.recordClient.getList()
+    .subscribe(response => {
+      console.log(response);
+    });
+
     this.getData();
     this.initializeForm();
   }
@@ -43,7 +49,7 @@ export class LogCoffeeComponent implements OnInit {
     this.selectedCoffee =
       this.coffeeDataService.coffeeList
         .filter(x => x.id == this.data.id)
-        .map(x => ({ brand: x.brand, imagePath: x.imagePath }))[0];
+        .map(x => ({ brandName: x.brandName, imageUri: x.imageUri }))[0];
 
     // TODO make not found notification
     if (!this.selectedCoffee) { this.dialogRef.close(); }
@@ -58,26 +64,30 @@ export class LogCoffeeComponent implements OnInit {
     }
 
     this.invalidForm = false;
-    this.coffeeDataService.addLoggedCoffee(this.mapFormToInterface());
+    this.recordClient.post(this.createNewRecordObject())
+    .subscribe(response => {
+      console.log(response)
+    });
+    
+
+
     this.dialogRef.close();
   }
 
-  private mapFormToInterface(): CoffeeRecord{
-    return {
-      id:9,
+  private createNewRecordObject(): NewRecordDto{
+    const record: INewRecordDto = {
       coffeeId: this.data.id,
       doseIn: this.logCoffeeForm.value.doseIn,
       doseOut: this.logCoffeeForm.value.doseOut,
       time: this.logCoffeeForm.value.time,
       flavors: this.logCoffeeForm.value.flavors,
-      grind: this.logCoffeeForm.value.grind,
       rating: this.logCoffeeForm.value.rating,
-      date: new Date(),
     }
+    return new NewRecordDto(record);
   }
 }
 
 interface selectedCoffee {
-  brand: string,
-  imagePath: string
+  brandName: string,
+  imageUri: string
 }

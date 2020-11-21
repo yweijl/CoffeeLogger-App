@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Coffee } from 'src/models/coffee/coffee.model';
 import { LogCoffeeComponent } from '../log-coffee/log-coffee.component';
 import { CoffeeTableComponent } from '../coffee-table/coffee-table.component';
+import { DetailedCoffeeDto } from 'src/app/http.clients/api.client';
 
 @Component({
   selector: 'app-coffee-card',
@@ -11,7 +11,7 @@ import { CoffeeTableComponent } from '../coffee-table/coffee-table.component';
 })
 export class CoffeeCardComponent implements OnInit {
 
-  @Input() coffee: Coffee;
+  @Input() detailedCoffee: DetailedCoffeeDto;
   constructor(public dialog: MatDialog) { 
   }
 
@@ -25,7 +25,7 @@ export class CoffeeCardComponent implements OnInit {
         {
           panelClass: 'log-coffee-dialog',
           disableClose: true,
-          data: {id: this.coffee.id}
+          data: {id: this.detailedCoffee.id}
         })
     }
 
@@ -34,7 +34,7 @@ export class CoffeeCardComponent implements OnInit {
         CoffeeTableComponent,
         {
           panelClass: 'log-coffee-dialog',
-          data: {id: this.coffee.id}
+          data: {id: this.detailedCoffee.id}
         });
     }
   }

@@ -1,33 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { Coffee } from 'src/models/coffee/coffee.model';
-import { coffeeDataSerivce } from '../services/coffee.data.service';
+import { CoffeeClient, DetailedCoffeeDto, IDetailedCoffeeDto } from '../http.clients/api.client';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  providers: [CoffeeClient]
 })
 export class DashboardComponent implements OnInit {
 
-  coffeeList: Coffee[];
+  coffeeList: DetailedCoffeeDto[];
 
-  constructor(private coffeeDataService: coffeeDataSerivce) { }
+  constructor(private coffeeClient: CoffeeClient) { }
 
   ngOnInit(): void {
-    this.coffeeList = this.coffeeDataService.coffeeList;
+    this.coffeeClient.getDetailedList().subscribe(response => {
+      this.coffeeList = response;
+    });
   }
 
   onAddCoffee() {
-    this.coffeeDataService.coffeeList.push(
-      {
-        id: 1,
-        brand: 'joepie',
-        country: 'belgie',
-        imagePath: '../assets/Logos/IefIdo_CMYK_V2-Hersteld_Rondo-Mexico.png',
-        bean: 'arabica',
-        loggedCups: 1,
-        rating: 3
-      });
-      console.log('a');
+    const x: IDetailedCoffeeDto = {
+      id: 1,
+      brandName: 'joepie',
+      country: 'belgie',
+      imageUri: '../assets/Logos/IefIdo_CMYK_V2-Hersteld_Rondo-Mexico.png',
+      coffeeType: 'arabica',
+      rating: 3,
+      loggedRecords: 1
+    };
+
+    this.coffeeList.push(new DetailedCoffeeDto(x));
   }
 }

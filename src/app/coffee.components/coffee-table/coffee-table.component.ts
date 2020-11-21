@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CoffeeRecord } from 'src/app/interfaces/coffee-record.interface';
+import { Record } from 'src/app/interfaces/record.interfaces';
 import { coffeeDataSerivce } from 'src/app/services/coffee.data.service';
 
 @Component({
@@ -11,11 +11,10 @@ import { coffeeDataSerivce } from 'src/app/services/coffee.data.service';
 export class CoffeeTableComponent implements OnInit {
 
   coffeeRecordsColumns: string[]
-  coffeeRecords: CoffeeRecord[];
+  coffeeRecords: Record[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: {id:number},
-    private dialogRef: MatDialogRef<CoffeeTableComponent>,
     private coffeeDataService:coffeeDataSerivce) {
   }
 
