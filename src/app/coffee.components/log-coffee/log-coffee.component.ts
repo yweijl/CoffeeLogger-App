@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { coffeeDataSerivce } from 'src/app/services/coffee.data.service';
-import { INewRecordDto, NewRecordDto, RecordClient } from 'src/app/http.clients/api.client';
+import { DataSerivce } from 'src/app/services/data.service';
+import { DetailedCoffeeDto, INewRecordDto, NewRecordDto, RecordClient } from 'src/app/http.clients/api.client';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-log-coffee',
@@ -19,18 +20,14 @@ export class LogCoffeeComponent implements OnInit {
   invalidForm: boolean = false;
 
   constructor(
+    private store: Store<{coffee: {detailedCoffees: DetailedCoffeeDto[]}}>,
     private recordClient:RecordClient,
     @Inject(MAT_DIALOG_DATA) private data: { id: number },
     private dialogRef: MatDialogRef<LogCoffeeComponent>,
-    private coffeeDataService: coffeeDataSerivce) {
+    private dataService: DataSerivce) {
   }
 
   ngOnInit(): void {
-    this.recordClient.getList()
-    .subscribe(response => {
-      console.log(response);
-    });
-
     this.getData();
     this.initializeForm();
   }
@@ -46,14 +43,17 @@ export class LogCoffeeComponent implements OnInit {
   }
 
   private getData() {
-    this.selectedCoffee =
-      this.coffeeDataService.coffeeList
+    this.store.select('coffee').subscribe(
+      response => {
+      this.selectedCoffee =
+      response.detailedCoffees
         .filter(x => x.id == this.data.id)
         .map(x => ({ brandName: x.brandName, imageUri: x.imageUri }))[0];
+    })
 
     // TODO make not found notification
     if (!this.selectedCoffee) { this.dialogRef.close(); }
-    this.flavorList = this.coffeeDataService.flavorList;
+    this.flavorList = this.dataService.flavorList;
   }
 
   public onSubmit() {
@@ -88,6 +88,6 @@ export class LogCoffeeComponent implements OnInit {
 }
 
 interface selectedCoffee {
-  brandName: string,
-  imageUri: string
+  brandName?: string,
+  imageUri?: string
 }

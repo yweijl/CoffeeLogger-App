@@ -27,6 +27,8 @@ import { CoffeeCardComponent } from './coffee.components/coffee-card/coffee-card
 import { LogCoffeeComponent } from './coffee.components/log-coffee/log-coffee.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CoffeeTableComponent } from './coffee.components/coffee-table/coffee-table.component';
+import { StoreModule } from '@ngrx/store';
+import { coffeeReducer } from './coffee.components/store/coffee.reducer';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import { CoffeeTableComponent } from './coffee.components/coffee-table/coffee-ta
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    
+    StoreModule.forRoot({coffee: coffeeReducer}),
     // material components
     MatCardModule,
     MatButtonModule,

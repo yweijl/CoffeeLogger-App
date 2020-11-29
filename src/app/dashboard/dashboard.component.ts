@@ -1,22 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { CoffeeClient, DetailedCoffeeDto, IDetailedCoffeeDto } from '../http.clients/api.client';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { DetailedCoffeeDto, IDetailedCoffeeDto } from '../http.clients/api.client';
+import { DataSerivce } from '../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [CoffeeClient]
 })
 export class DashboardComponent implements OnInit {
 
-  coffeeList: DetailedCoffeeDto[];
+  coffeeList: Observable<{detailedCoffees: DetailedCoffeeDto[]}>;
 
-  constructor(private coffeeClient: CoffeeClient) { }
+  constructor(
+    private store: Store<{coffee: {detailedCoffees: DetailedCoffeeDto[]}}>,
+    private dataService: DataSerivce) { }
 
   ngOnInit(): void {
-    this.coffeeClient.getDetailedList().subscribe(response => {
-      this.coffeeList = response;
-    });
+    this.coffeeList = this.store.select('coffee');
+    this.dataService.LoadDetailedCoffees();
   }
 
   onAddCoffee() {
@@ -29,7 +32,5 @@ export class DashboardComponent implements OnInit {
       rating: 3,
       loggedRecords: 1
     };
-
-    this.coffeeList.push(new DetailedCoffeeDto(x));
   }
 }
